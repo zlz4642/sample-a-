@@ -1,0 +1,99 @@
+1. User, Database 생성 및 권한부여
+MariaDB [none]> create database webdb;
+Query OK, 1 row affected (0.01 sec)
+
+MariaDB [none]> grant all privileges on webdb.* to kipyadmin@'%';
+Query OK, 0 rows affected (0.00 sec)
+
+2. Member Table 생성
+MariaDB [none]> use webdb;
+Database changed
+
+MariaDB [webdb]> create table member(No int auto_increment primary key, ID varchar(10) not null, PW varchar(200) not null, Name varchar(10) not null, phone varchar(20) not null, addr varchar(50) not null, Mail varchar(50) not null);
+Query OK, 0 rows affected (0.01 sec)
+
+MariaDB [webdb]> desc member;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| No    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| ID    | varchar(10) | NO   |     | NULL    |                |
+| PW    | varchar(100) | NO   |     | NULL    |                |
+| Name  | varchar(10) | NO   |     | NULL    |                |
+| phone | varchar(20) | NO   |     | NULL    |                |
+| addr  | varchar(50) | NO   |     | NULL    |                |
+| Mail  | varchar(50) | NO   |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+7 rows in set (0.01 sec)
+
+insert into member values(1, 'kipy_admin', SHA("password"), 'kipy admin', '010-1111-1111', 'Seoul', 'kipy_admin@kipy.shop');
+
+3. Board Table 생성
+MariaDB [webdb]> create table board(No int auto_increment primary key, Title varchar(50) not null, Content varchar(20000) not null, Userid varchar(20) not null, Date varchar(50) not null);
+Query OK, 0 rows affected (0.026 sec)
+
+MariaDB [webdb]> desc board;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| No      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| Title   | varchar(50)  | NO   |     | NULL    |                |
+| Content | varchar(500) | NO   |     | NULL    |                |
+| Userid  | varchar(20)  | NO   |     | NULL    |                |
+| Date    | varchar(50)  | NO   |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+5 rows in set (0.021 sec)
+
+[ TEST Data 입력 ]
+insert into board values(1,"A","BBB","user1","2020-04-10");
+insert into board values(2,"A","BBB","user1","2020-04-10");
+insert into board values(3,"A","BBB","user1","2020-04-10");
+insert into board values(4,"A","BBB","user1","2020-04-10");
+insert into board values(5,"A","BBB","user1","2020-04-10");
+insert into board values(6,"A","BBB","user1","2020-04-10");
+insert into board values(7,"A","BBB","user1","2020-04-10");
+insert into board values(8,"A","BBB","user1","2020-04-10");
+insert into board values(9,"A","BBB","user1","2020-04-10");
+insert into board values(10,"A","BBB","user1","2020-04-10");
+insert into board values(11,"A","BBB","user1","2020-04-10");
+insert into board values(12,"A","BBB","user1","2020-04-10");
+insert into board values(13,"A","BBB","user1","2020-04-10");
+insert into board values(14,"A","BBB","user1","2020-04-10");
+insert into board values(15,"A","BBB","user1","2020-04-10");
+insert into board values(16,"A","BBB","user1","2020-04-10");
+insert into board values(17,"A","BBB","user1","2020-04-10");
+insert into board values(18,"A","BBB","user1","2020-04-10");
+insert into board values(19,"A","BBB","user1","2020-04-10");
+insert into board values(20,"A","BBB","user1","2020-04-10");
+insert into board values(21,"A","BBB","user1","2020-04-10");
+insert into board values(22,"A","BBB","user1","2020-04-10");
+insert into board values(23,"A","BBB","user1","2020-04-10");
+insert into board values(24,"A","BBB","user1","2020-04-10");
+insert into board values(25,"A","BBB","user1","2020-04-10");
+insert into board values(26,"A","BBB","user1","2020-04-10");
+insert into board values(27,"A","BBB","user1","2020-04-10");
+insert into board values(28,"A","BBB","user1","2020-04-10");
+insert into board values(29,"A","BBB","user1","2020-04-10");
+insert into board values(30,"A","BBB","user1","2020-04-10");
+
+4. Message Table 생성 
+create table Message(No int auto_increment primary key, Title varchar(50) not null, Message varchar(20000) not null, EmailAddress varchar(20) not null, PhoneNumber varchar(20) null, Date varchar(50) not null);
+
+
+
+
+※ 세션 확인
+<?php
+  echo '<pre>';
+  var_dump($_SESSION);
+  echo '</pre>';
+?>
+
+※ 순서 번호 초기화
+$CNT = "SET @CNT=0";
+$Auto_Increment = "UPDATE member SET member.no = @CNT:=@CNT+1";
+
+
+
+
+
